@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ACHIK GROUP INDONESIA | Specialist AI</title>
+
+    <style>
+
+        /* ===============================
+           RESET
+        =============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===============================
+           WARNA UTAMA
+        =============================== */
+
+        :root {
+            --background: #24272e;
+            --panel: #192332;
+            --panel-hover: #202e40;
+            --cyan: #48cfff;
+            --blue: #338cff;
+            --purple: #aa7cff;
+            --white: #f1f5f9;
+            --text: #c7d1dd;
+            --green: #67f0b0;
+        }
+
+        /* ===============================
+           BODY + NEON TECH BACKGROUND
+        =============================== */
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            color: var(--white);
+
+            background-color: var(--background);
+
+            background-image:
+
+                /* Garis vertikal */
+                linear-gradient(
+                    90deg,
+                    transparent 49.8%,
+                    rgba(72, 207, 255, 0.15) 50%,
+                    transparent 50.2%
+                ),
+
+                /* Garis horizontal */
+                linear-gradient(
+                    0deg,
+                    transparent 49.8%,
+                    rgba(170, 124, 255, 0.10) 50%,
+                    transparent 50.2%
+                ),
+
+                /* Cahaya atas */
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(42, 138, 210, 0.18),
+                    transparent 35%
+                );
+
+            background-size:
+                180px 180px,
+                180px 180px,
+                100% 100%;
+
+            background-attachment: fixed;
+        }
+
+        /* ===============================
+           GARIS TECH DI BACKGROUND
+        =============================== */
+
+        .tech-bg {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+            z-index: -1;
+
+            overflow: hidden;
+        }
+
+        .tech-line {
+            position: absolute;
+            height: 2px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(72, 207, 255, 0.7),
+                transparent
+            );
+
+            box-shadow:
+                0 0 10px rgba(72, 207, 255, 0.25);
+        }
+
+        .line-1 {
+            width: 45%;
+            top: 8%;
+            left: -5%;
+            transform: rotate(35deg);
+        }
+
+        .line-2 {
+            width: 55%;
+            top: 35%;
+            right: -10%;
+            transform: rotate(-35deg);
+        }
+
+        .line-3 {
+            width: 50%;
+            bottom: 12%;
+            left: -10%;
+            transform: rotate(-35deg);
+        }
+
+        .line-4 {
+            width: 40%;
+            bottom: 25%;
+            right: -8%;
+            transform: rotate(40deg);
+        }
+
+        /* ===============================
+           CONTAINER
+        =============================== */
+
+        .container {
+            width: min(1100px, 94%);
+            margin: auto;
+
+            padding-top: 25px;
+            padding-bottom: 60px;
+        }
+
+        /* ===============================
+           BANNER
+        =============================== */
+
+        #home {
+            scroll-margin-top: 20px;
+        }
+
+        .banner-box {
+            width: 100%;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(72, 207, 255, 0.35);
+
+            box-shadow:
+                0 0 15px rgba(72, 207, 255, 0.12),
+                0 0 40px rgba(100, 80, 255, 0.08);
+
+            background: #0b111a;
+        }
+
+        .banner-box img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            max-height: 330px;
+
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* ===============================
+           JUDUL
+        =============================== */
+
+        .title-box {
+            margin-top: 24px;
+
+            padding: 18px 15px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(24, 36, 52, 0.96),
+                    rgba(20, 30, 43, 0.96)
+                );
+
+            border: 1px solid rgba(72, 207, 255, 0.45);
+
+            border-radius: 12px;
+
+            box-shadow:
+                inset 0 0 20px rgba(72, 207, 255, 0.02),
+                0 0 15px rgba(72, 207, 255, 0.08);
+        }
+
+        .title-box h1 {
+            font-size: clamp(19px, 2.5vw, 27px);
+
+            letter-spacing: 4px;
+
+            color: var(--cyan);
+
+            text-shadow:
+                0 0 10px rgba(72, 207, 255, 0.25);
+        }
+
+        .title-box p {
+            margin-top: 10px;
+
+            font-size: clamp(9px, 1.3vw, 12px);
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            color: #c5d0dc;
+        }
+
+        /* ===============================
+           MENU UTAMA
+        =============================== */
+
+        .menu-grid {
+            margin-top: 14px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 12px;
+        }
+
+        .menu-btn {
+            min-height: 55px;
+
+            padding: 12px 10px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            text-decoration: none;
+
+            color: var(--white);
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 0.5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(28, 41, 59, 0.98),
+                    rgba(21, 31, 44, 0.98)
+                );
+
+            border:
+                1px solid rgba(72, 160, 255, 0.40);
+
+            border-radius: 12px;
+
+            box-shadow:
+                inset 0 0 15px rgba(72, 207, 255, 0.02),
+                0 0 8px rgba(72, 207, 255, 0.06);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-3px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #24374e,
+                    #1b2b3e
+                );
+
+            border-color: var(--cyan);
+
+            box-shadow:
+                0 0 12px rgba(72, 207, 255, 0.30),
+                0 0 30px rgba(72, 207, 255, 0.10);
+        }
+
+        .menu-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ===============================
+           PANEL TOOL TAMBAHAN
+        =============================== */
+
+        .tools-panel {
+            position: relative;
+
+            margin-top: 16px;
+
+            padding: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(27, 39, 56, 0.97),
+                    rgba(24, 34, 49, 0.97)
+                );
+
+            border:
+                1px solid rgba(72, 207, 255, 0.38);
+
+            border-radius: 14px;
+
+            overflow: hidden;
+        }
+
+        .tools-panel::before {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            right: -100px;
+            bottom: -160px;
+
+            border:
+                2px solid rgba(110, 160, 255, 0.20);
+
+            transform: rotate(45deg);
+        }
+
+        .tools-title {
+            position: relative;
+
+            z-index: 1;
+
+            text-align: center;
+
+            font-size:
+                clamp(12px, 1.7vw, 17px);
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            line-height: 1.5;
+        }
+
+        .small-menu {
+            position: relative;
+
+            z-index: 1;
+
+            margin-top: 18px;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .small-btn {
+            min-width: 130px;
+
+            padding: 12px 14px;
+
+            text-decoration: none;
+            text-align: center;
+
+            color: #dce7f1;
+
+            font-size: 10px;
+            font-weight: bold;
+
+            background:
+                rgba(27, 40, 58, 0.95);
+
+            border:
+                1px solid rgba(72, 160, 255, 0.35);
+
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+        .small-btn:hover {
+            border-color: var(--cyan);
+
+            box-shadow:
+                0 0 12px rgba(72, 207, 255, 0.25);
+
+            transform: translateY(-2px);
+        }
+
+        .new {
+            display: block;
+
+            margin-top: 5px;
+
+            color: var(--green);
+
+            font-size: 9px;
+        }
+
+        /* ===============================
+           FOOTER
+        =============================== */
+
+        footer {
+            margin-top: 30px;
+
+            text-align: center;
+
+            color: #8290a1;
+
+            font-size: 11px;
+        }
+
+        /* ===============================
+           TABLET
+        =============================== */
+
+        @media (max-width: 800px) {
+
+            .menu-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .banner-box img {
+                min-height: 170px;
+                object-fit: cover;
+            }
+
+        }
+
+        /* ===============================
+           HP
+        =============================== */
+
+        @media (max-width: 480px) {
+
+            .container {
+                width: 92%;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title-box h1 {
+                letter-spacing: 2px;
+            }
+
+            .title-box p {
+                line-height: 1.6;
+            }
+
+            .banner-box {
+                border-radius: 12px;
+            }
+
+            .banner-box img {
+                min-height: 130px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND GARIS NEON -->
+
+    <div class="tech-bg">
+
+        <div class="tech-line line-1"></div>
+        <div class="tech-line line-2"></div>
+        <div class="tech-line line-3"></div>
+        <div class="tech-line line-4"></div>
+
+    </div>
+
+
+    <main class="container">
+
+        <!-- ==========================
+             HOME / BANNER AWAL
+        =========================== -->
+
+        <section id="home">
+
+            <div class="banner-box">
+
+                <!--
+                    FILE BANNER HARUS
+                    BERNAMA: banner.png
+                -->
+
+                <img
+                    src="banner.png"
+                    alt="ACHIK GROUP INDONESIA"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             JUDUL WEBSITE
+        =========================== -->
+
+        <section class="title-box">
+
+            <h1>AI CONTENT CREATOR SUITE</h1>
+
+            <p>
+                TINGGAL PILIH → IKUTIN STEP-NYA →
+                GAK PAKE MIKIR →
+                GAK PAKE RUWEETT BOSKUU
+            </p>
+
+        </section>
+
+
+        <!-- ==========================
+             MENU UTAMA
+        =========================== -->
+
+        <section class="menu-grid">
+
+            <!-- HOME -->
+            <a href="#home" class="menu-btn">
+                HOME
+            </a>
+
+
+            <!-- LINK A -->
+            <a
+                href="https://LINK-A.com"
+                target="_blank"
+                class="menu-btn"
+            >
+                CHARACTER GENERATOR
+            </a>
+
+
+            <!-- LINK B -->
+            <a
+                href="https://LINK-B.com"
+                target="_blank"
+                class="menu-btn"
+            >
+                MOTION CONTROL
+            </a>
+
+
+            <!-- LINK C -->
+            <a
+                href="https://LINK-C.com"
+                target="_blank"
+                class="menu-btn"
+            >
+                PROMPT SIAP PAKAI
+            </a>
+
+
+            <!-- PABRIK KONTEN = KEMBALI KE AWAL -->
+            <a href="#home" class="menu-btn">
+                PABRIK KONTEN
+            </a>
+
+
+            <!-- LINK D -->
+            <a
+                href="https://LINK-D.com"
+                target="_blank"
+                class="menu-btn"
+            >
+                CHARACTER CLONE
+            </a>
+
+
+            <!-- LINK E -->
+            <a
+                href="https://LINK-E.com"
+                target="_blank"
+                class="menu-btn"
+            >
+                IMAGE GENERATOR
+            </a>
+
+
+            <!-- LINK F -->
+            <a
+                href="https://LINK-F.com"
+                target="_blank"
+                class="menu-btn"
+            >
+                UGC KONTEN
+            </a>
+
+
+            <!-- LINK G -->
+            <a
+                href="https://LINK-G.com"
+                target="_blank"
+                class="menu-btn"
+            >
+                INFLUENCER MAKER
+            </a>
+
+        </section>
+
+
+        <!-- ==========================
+             MENU TOOL TAMBAHAN
+        =========================== -->
+
+        <section class="tools-panel">
+
+            <div class="tools-title">
+
+                TINGGAL PILIH → IKUTIN STEP-NYA →
+                GAK PAKE MIKIR →
+                GAK PAKE RUWEETT BOSKUU.
+
+            </div>
+
+
+            <div class="small-menu">
+
+
+                <a
+                    href="https://LINK-MUSIC.com"
+                    target="_blank"
+                    class="small-btn"
+                >
+                    MUSIC CLIP V2
+                    <span class="new">NEW</span>
+                </a>
+
+
+                <a
+                    href="https://LINK-DRAMA.com"
+                    target="_blank"
+                    class="small-btn"
+                >
+                    DRAMA PENDEK V2
+                    <span class="new">NEW</span>
+                </a>
+
+
+                <a
+                    href="https://LINK-SCENE.com"
+                    target="_blank"
+                    class="small-btn"
+                >
+                    SCENE EXTRACTOR
+                    <span class="new">NEW</span>
+                </a>
+
+
+                <a
+                    href="https://LINK-JAJA.com"
+                    target="_blank"
+                    class="small-btn"
+                >
+                    JAJA DRAMA STUDIO
+                    <span class="new">NEW</span>
+                </a>
+
+
+                <a
+                    href="https://LINK-FRAME.com"
+                    target="_blank"
+                    class="small-btn"
+                >
+                    FRAME EXTRACTOR
+                    <span class="new">NEW</span>
+                </a>
+
+
+                <a
+                    href="https://LINK-META.com"
+                    target="_blank"
+                    class="small-btn"
+                >
+                    META ADS
+                    <span class="new">NEW</span>
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            © 2026 ACHIK GROUP INDONESIA — SPECIALIST AI
+
+        </footer>
+
+    </main>
+
+</body>
+</html>
